@@ -19,7 +19,7 @@ def main(num_params, num_iters, ratio_of_inliners, inputFile, outputDirectory):
 	y = np.reshape(np.array(y), [-1, 1])
 	indices = np.arange(x.shape[0])
 	yticks = np.linspace(-10, 10, x.shape[0])
-	threshold = 144
+	threshold = 121
 	max_inliners = 0
 	num_inliners = 0
 	total_error = 0
@@ -29,7 +29,6 @@ def main(num_params, num_iters, ratio_of_inliners, inputFile, outputDirectory):
 		os.mkdir(outputDirectory+'_'+str(num_iters)+'_'+str(threshold))
 	
 	for k in range(num_iters):
-		print('------------------',k)
 		A = np.random.choice(indices, 3, replace=False)
 		x_data = x[A]
 		y_data = y[A]
@@ -51,7 +50,7 @@ def main(num_params, num_iters, ratio_of_inliners, inputFile, outputDirectory):
 			best_parameters = model
 			best_model_pts = A
 			best_error_mean = error_mean 
-			# print(model, max_inliners*100/x.shape[0])
+
 		total_error = 0	
 		num_inliners = 0
 
@@ -71,7 +70,6 @@ def main(num_params, num_iters, ratio_of_inliners, inputFile, outputDirectory):
 			plt.ylabel('y')
 			plt.savefig(outputDirectory+'_'+str(num_iters)+"_"+str(threshold)+"/"+'plot_'+str(k)+'_'+str(threshold)+'.png')
 			plt.close()
-	# print best_model_pts
 
 if __name__ == '__main__':
 
